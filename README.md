@@ -14,7 +14,7 @@ Calixte BERTHIER - 5999261123\
 
 ## The problem
 
-A factory has **6 workers** and **6 production stations**. Each worker needs a different amount of time to do the job on each station. The times (in **minutes**) are given in a matrix: row *i* is worker *i*, column *j* is station *j*.
+A factory has **N workers** and **N production stations**. Each worker needs a different amount of time to do the job on each station. The times (in **minutes**) are given in a matrix: row *i* is worker *i*, column *j* is station *j*.
 
 **Goal:** put exactly one worker on each station so that the **total time** (the sum of the chosen times) is as small as possible.
 
