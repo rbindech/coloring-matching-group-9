@@ -1,4 +1,4 @@
-# Hungarian algorithm (Kuhn-Munkres)
+# Hungarian algorithm
 # Case: assign factory workers to production stations so that the
 # with total time is as small as possible.
 
