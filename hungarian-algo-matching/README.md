@@ -1,4 +1,4 @@
-Emmanuel SANTINI - 5999261124
+Emmanuel SANTINI - 5999261124\
 Calixte BERTHIER - 5999261123
 
 ## Hungarian algorithm : assigning workers to production stations
