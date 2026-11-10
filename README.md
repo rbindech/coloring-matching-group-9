@@ -66,13 +66,6 @@ If no file is given, the program reads `sample_input.txt`.
 4. **Adjust** if fewer than N lines were needed: take the smallest uncovered value, subtract it from the uncovered cells and add it to the cells covered twice (where two lines cross). Then go back to step 3.
 5. **Assign** when N lines are needed: pick one zero per row and per column. The total time is computed from the original matrix.
 
-## Reading the output
-
-| Mark | Meaning |
-|---|---|
-| `---` at the end of a row | a line is drawn on that row |
-| `\|` above a column | a line is drawn on that column |
-| `*` after a number | zero chosen in the final assignment |
 
 ## Result on the sample
 
