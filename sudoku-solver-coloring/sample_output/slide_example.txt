@@ -1,0 +1,100 @@
+$ python main.py puzzles/slide_example.txt --algo all --count-solutions
+
+=== Sudoku solver using graph colouring ===
+Puzzle file : puzzles/slide_example.txt
+Sudoku graph 9x9: |V| = 81, |E| = 810, every vertex has degree 20, target: proper colouring with 9 colours (chi(G) = 9)
+Clues (pre-coloured vertices): 18 / 81
+
+Input grid:
++-------+-------+-------+
+| . . . | . . . | . 1 . |
+| . . 2 | . . . | . 3 4 |
+| . . . | . 5 1 | . . . |
++-------+-------+-------+
+| . . . | . . 6 | 5 . . |
+| . 7 . | 3 . . | . 8 . |
+| . . 3 | . . . | . . . |
++-------+-------+-------+
+| . . . | . 8 . | . . . |
+| 5 8 . | . . . | 9 . . |
+| 6 9 . | . . . | . . . |
++-------+-------+-------+
+
+Clue check  : OK (no edge joins two clues of the same colour)
+Solutions   : 1699 -> NOT unique
+
+--- Backtracking (basic, lecture) ---
+Result      : Solved
+Nodes       : 122428  (colour assignments tried)
+Backtracks  : 122365
+Time        : 480.9 ms
+Verification: proper 9-colouring = True, clues kept = True -> VALID SUDOKU
++-------+-------+-------+
+| 7 4 9 | 2 3 8 | 6 1 5 |
+| 1 5 2 | 6 9 7 | 8 3 4 |
+| 8 3 6 | 4 5 1 | 2 7 9 |
++-------+-------+-------+
+| 2 1 8 | 9 7 6 | 5 4 3 |
+| 9 7 5 | 3 2 4 | 1 8 6 |
+| 4 6 3 | 8 1 5 | 7 9 2 |
++-------+-------+-------+
+| 3 2 1 | 5 8 9 | 4 6 7 |
+| 5 8 4 | 7 6 3 | 9 2 1 |
+| 6 9 7 | 1 4 2 | 3 5 8 |
++-------+-------+-------+
+
+--- Backtracking + DSATUR/MRV + forward checking ---
+Result      : Solved
+Nodes       : 1601  (colour assignments tried)
+Backtracks  : 1538
+Time        : 8.6 ms
+Verification: proper 9-colouring = True, clues kept = True -> VALID SUDOKU
++-------+-------+-------+
+| 7 4 9 | 2 3 8 | 6 1 5 |
+| 1 5 2 | 6 9 7 | 8 3 4 |
+| 8 3 6 | 4 5 1 | 2 7 9 |
++-------+-------+-------+
+| 2 1 8 | 9 7 6 | 5 4 3 |
+| 9 7 5 | 3 2 4 | 1 8 6 |
+| 4 6 3 | 8 1 5 | 7 9 2 |
++-------+-------+-------+
+| 3 2 1 | 5 8 9 | 4 6 7 |
+| 5 8 4 | 7 6 3 | 9 2 1 |
+| 6 9 7 | 1 4 2 | 3 5 8 |
++-------+-------+-------+
+
+--- Backtracking + DSATUR/MRV + forward checking (degree tie-break) ---
+Result      : Solved
+Nodes       : 15444  (colour assignments tried)
+Backtracks  : 15381
+Time        : 88.0 ms
+Verification: proper 9-colouring = True, clues kept = True -> VALID SUDOKU
++-------+-------+-------+
+| 7 4 9 | 2 3 8 | 6 1 5 |
+| 1 5 2 | 9 6 7 | 8 3 4 |
+| 8 3 6 | 4 5 1 | 2 7 9 |
++-------+-------+-------+
+| 9 1 8 | 7 4 6 | 5 2 3 |
+| 4 7 5 | 3 9 2 | 1 8 6 |
+| 2 6 3 | 8 1 5 | 4 9 7 |
++-------+-------+-------+
+| 3 2 4 | 5 8 9 | 7 6 1 |
+| 5 8 1 | 6 7 3 | 9 4 2 |
+| 6 9 7 | 1 2 4 | 3 5 8 |
++-------+-------+-------+
+
+--- Welsh-Powell (greedy) ---
+Result      : Proper colouring with 13 colours -> 12 cell(s) got a colour > 9: not a valid Sudoku
+Time        : 0.2 ms
+   3    4    5    2    6    7    8    1    9
+   1    6    2    8    9 [10]    7    3    4
+   7 [10]    8    4    5    1    2    6 [11]
+   2    1    4    7 [10]    6    5    9    3
+   9    7    6    3    1    2    4    8 [10]
+   8    5    3    9    4 [11]    1    2    6
+   4    2    1    5    8    3    6    7 [12]
+   5    8    7    1    2    4    9 [10] [13]
+   6    9 [10] [11]    7 [12]    3    4    1
+(values in [ ] are colours > 9: impossible in a Sudoku)
+Image saved : sample_output/images/slide_example_welsh_powell.png
+Image saved : sample_output/images/slide_example.png

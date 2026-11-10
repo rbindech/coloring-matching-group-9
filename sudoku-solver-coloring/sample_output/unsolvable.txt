@@ -1,0 +1,57 @@
+$ python main.py puzzles/unsolvable.txt --algo all --count-solutions
+
+=== Sudoku solver using graph colouring ===
+Puzzle file : puzzles/unsolvable.txt
+Sudoku graph 9x9: |V| = 81, |E| = 810, every vertex has degree 20, target: proper colouring with 9 colours (chi(G) = 9)
+Clues (pre-coloured vertices): 9 / 81
+
+Input grid:
++-------+-------+-------+
+| 1 2 3 | 4 5 6 | 7 8 . |
+| . . . | . . . | . . . |
+| . . . | . . . | . . . |
++-------+-------+-------+
+| . . . | . . . | . . . |
+| . . . | . . . | . . 9 |
+| . . . | . . . | . . . |
++-------+-------+-------+
+| . . . | . . . | . . . |
+| . . . | . . . | . . . |
+| . . . | . . . | . . . |
++-------+-------+-------+
+
+Clue check  : OK (no edge joins two clues of the same colour)
+Solutions   : 0 -> no solution
+
+--- Backtracking (basic, lecture) ---
+Result      : No solution: the graph is not 9-colourable with these clues
+Nodes       : 0  (colour assignments tried)
+Backtracks  : 0
+Time        : 0.0 ms
+
+--- Backtracking + DSATUR/MRV + forward checking ---
+Result      : No solution: the graph is not 9-colourable with these clues
+Nodes       : 0  (colour assignments tried)
+Backtracks  : 0
+Time        : 0.0 ms
+
+--- Backtracking + DSATUR/MRV + forward checking (degree tie-break) ---
+Result      : No solution: the graph is not 9-colourable with these clues
+Nodes       : 0  (colour assignments tried)
+Backtracks  : 0
+Time        : 0.0 ms
+
+--- Welsh-Powell (greedy) ---
+Result      : Proper colouring with 14 colours -> 18 cell(s) got a colour > 9: not a valid Sudoku
+Time        : 0.3 ms
+   1    2    3    4    5    6    7    8 [10]
+   4    5    6    1    2    3    9 [11] [12]
+   7    8    9 [10] [11] [12]    1    2    3
+   2    1    4    3    6    5    8    7 [11]
+   3    6    5    2    1    4 [10] [12]    9
+   8    7 [10]    9 [12] [11]    2    1    4
+   5    3    1    6    4    2 [11]    9    7
+   6    4    2    5    3    1 [12] [10]    8
+   9 [10]    7    8 [13] [14]    3    4    1
+(values in [ ] are colours > 9: impossible in a Sudoku)
+Image saved : sample_output/images/unsolvable_welsh_powell.png

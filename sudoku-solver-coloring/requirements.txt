@@ -1,0 +1,2 @@
+matplotlib>=3.5   # optional, only for --png / --graph-png
+pytest>=7.0       # optional, only for the tests

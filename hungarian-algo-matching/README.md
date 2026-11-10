@@ -1,13 +1,5 @@
-Emmanuel SANTINI - 5999261124\
-Calixte BERTHIER - 5999261123\
-@@@@@
-
-
-# 1. Coloring
-
-##########
-
-# 2. Matching
+Emmanuel SANTINI - 5999261124
+Calixte BERTHIER - 5999261123
 
 ## Hungarian algorithm : assigning workers to production stations
 

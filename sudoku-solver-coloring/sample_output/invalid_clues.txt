@@ -1,0 +1,25 @@
+$ python main.py puzzles/invalid_clues.txt --algo all --count-solutions
+
+=== Sudoku solver using graph colouring ===
+Puzzle file : puzzles/invalid_clues.txt
+Sudoku graph 9x9: |V| = 81, |E| = 810, every vertex has degree 20, target: proper colouring with 9 colours (chi(G) = 9)
+Clues (pre-coloured vertices): 2 / 81
+
+Input grid:
++-------+-------+-------+
+| 5 . . | . 5 . | . . . |
+| . . . | . . . | . . . |
+| . . . | . . . | . . . |
++-------+-------+-------+
+| . . . | . . . | . . . |
+| . . . | . . . | . . . |
+| . . . | . . . | . . . |
++-------+-------+-------+
+| . . . | . . . | . . . |
+| . . . | . . . | . . . |
+| . . . | . . . | . . . |
++-------+-------+-------+
+
+Clue check  : INVALID - 1 edge(s) join two clues with the same colour:
+   v0=(row 1, col 1) -- v4=(row 1, col 5) both coloured 5
+No algorithm is run: the pre-colouring is already improper.

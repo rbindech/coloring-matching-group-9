@@ -1,0 +1,5 @@
+# 4x4 Sudoku (2x2 boxes), colours 1..4
+1...
+..2.
+.3..
+...4
