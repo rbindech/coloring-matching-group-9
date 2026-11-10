@@ -86,3 +86,7 @@ Worker 5 -> Station 2 : 23 min
 Worker 6 -> Station 6 : 22 min
 Total time: 164 min
 ```
+
+## 3. AI tools usage disclosure
+
+AI tools were used to help structure the README, reformat algorithm explanations for clarity, and assist in drafting test cases. All core logic, graph algorithms, and validation checks were carried out by the team.
