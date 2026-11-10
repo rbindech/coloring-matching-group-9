@@ -37,43 +37,6 @@ def read_matrix(file_name):
         matrix.append(row)
     return matrix
 
-# For printing :
-# "---" at the end of a row  = a line is drawn on that row
-# "|" above a column = a line is drawn on that column
-# "*" after a number = zero chosen in the final assignment
-
-def show(matrix, title, covered_rows=(), covered_cols=(), chosen=None):
-    size = len(matrix)
-    print()
-    print(title)
-
-    header = "     "
-    for j in range(size):
-        header += ("S" + str(j + 1)).rjust(4) + " "
-    print(header)
-
-    if len(covered_cols) > 0:
-        bars = "     "
-        for j in range(size):
-            if j in covered_cols:
-                symbol = "|"
-            else:
-                symbol = " "
-            bars += symbol.rjust(4) + " "
-        print(bars)
-
-    for i in range(size):
-        text = ("W" + str(i + 1)).ljust(5)
-        for j in range(size):
-            text += str(matrix[i][j]).rjust(4)
-            if chosen is not None and chosen[i] == j:
-                text += "*"
-            else:
-                text += " "
-        if i in covered_rows:
-            text += " ---"
-        print(text)
-
 # Step 1 and 2: row reduction, then column reduction
 
 def reduce_rows(matrix):
@@ -202,21 +165,11 @@ def main():
     costs = read_matrix(file_name)
     size = len(costs)
 
-    print("Hungarian algorithm,", size, "x", size, "matrix")
-    print("(W = worker, S = station, times in minutes)")
-    show(costs, "Initial matrix:")
-
     # Step 1
     matrix, minimums = reduce_rows(costs)
-    print("\n--- Step 1: row reduction ---")
-    print("Row minimums:", minimums)
-    show(matrix, "Matrix after row reduction:")
 
     # Step 2
     matrix, minimums = reduce_columns(matrix)
-    print("\n--- Step 2: column reduction ---")
-    print("Column minimums:", minimums)
-    show(matrix, "Matrix after column reduction:")
 
     # Steps 3 and 4
     iteration = 1
@@ -224,19 +177,11 @@ def main():
         covered_rows, covered_cols = cover_zeros(matrix)
         number_of_lines = len(covered_rows) + len(covered_cols)
 
-        print("\n--- Step 3 (iteration " + str(iteration) + "): cover the zeros ---")
-        show(matrix, "Lines needed: " + str(number_of_lines) + " (matrix size is " + str(size) + ")",
-             covered_rows, covered_cols)
-
         if number_of_lines == size:
             break
 
         smallest = smallest_uncovered(matrix, covered_rows, covered_cols)
-        print("\n--- Step 4 (iteration " + str(iteration) + "): adjust ---")
-        print("Smallest uncovered value:", smallest)
-        print("Subtract it from uncovered cells, add it to cells covered twice.")
         matrix = adjust(matrix, covered_rows, covered_cols, smallest)
-        show(matrix, "Matrix after adjustment:")
         iteration += 1
 
     # Step 5
@@ -244,8 +189,6 @@ def main():
     choice = [0] * size
     for column in range(size):
         choice[row_of_column[column]] = column
-    print("\n--- Step 5: final assignment ---")
-    show(matrix, "Chosen zeros are marked with *:", chosen=choice)
 
     # Final result
     print("\n--- Result ---")
